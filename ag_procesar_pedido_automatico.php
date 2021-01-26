@@ -1,4 +1,17 @@
-$idran_usuario=$_SESSION['usuario'];
+<?php session_start();
+include("config.php");
+require("main_menu.php");
+setlocale(LC_TIME, "spanish");
+if(!isset ($_SESSION['usuario'])){
+
+
+header("Location: login.php"); 
+/* Asegurándonos de que el código interior no será ejecutado cuando se realiza la redirección. */
+exit;
+
+} else{
+	
+	$idran_usuario=$_SESSION['usuario'];
 	$registros_data=mysqli_query($conn,"SELECT * FROM prox_users WHERE idrand = '$idran_usuario'");
 	$reg_usua=mysqli_fetch_array($registros_data);
 	
@@ -454,3 +467,13 @@ function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
 </script>
+	
+
+</body>
+</html>	
+<?php		
+		
+	
+}
+	
+?>	
